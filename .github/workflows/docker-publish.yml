@@ -36,11 +36,9 @@ jobs:
         with:
           images: ghcr.io/satish123k/skills-publish-docker-images/stackoverflown
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v5
         with:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: |
-            ghcr.io/satish123k/skills-publish-docker-images/stackoverflown:main
-            ghcr.io/satish123k/skills-publish-docker-images/stackoverflown:${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
